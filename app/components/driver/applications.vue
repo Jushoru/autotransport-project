@@ -1,0 +1,120 @@
+<script setup lang="ts">
+import {driverApplicationsHeaders} from "~/config/demoTablesHeaders";
+import type {driverApplicationRowType} from "~/types/demoTablesTypes";
+import {useDemoStore} from "~/stores/demoStore";
+import {useDemoDbStore} from "~/stores/demoDbStore";
+import {dateTimeFormat, getTime} from "~/utils/date&time";
+import {requestStatuses} from "~/config/demoRequestStatuses";
+
+const props = defineProps<{
+  driver_id?: string
+}>()
+
+const demoDbStore = useDemoDbStore()
+const demoStore = useDemoStore()
+
+const currentDriverId = computed(() =>
+    props.driver_id || demoStore.currentDriverId
+)
+
+const currentDriverRequests = computed(() =>
+    demoDbStore.getCurrentDriverRequestsById(currentDriverId.value)
+);
+const currentDriverName = demoDbStore.getCurrentDriverById(currentDriverId.value)?.full_name;
+
+const tableRows = computed<driverApplicationRowType[]>(() => {
+  return [...currentDriverRequests.value]
+      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      .map(req => ({
+        req_id: req.id,
+        full_name: currentDriverName ?? '-',
+        arrival_place_name: demoDbStore.getArrivalPlaceNameById(demoStore.currentArrivalPlaceId) ?? '-',
+        created_at: dateTimeFormat(req.created_at, true),
+        ttn_number: req.ttn_number,
+        unload_date: dateTimeFormat(req.unload_datetime, false),
+        unload_start_time: getTime(req.unload_datetime),
+        status: requestStatuses[req.status],
+        interact: ""
+      }));
+});
+
+const cancelingIds = ref<Set<string>>(new Set());
+
+async function onCancel(reqId: string) {
+  if (cancelingIds.value.has(reqId)) return;
+
+  cancelingIds.value.add(reqId);
+
+  try {
+    await demoDbStore.cancelRequest(reqId);
+  } finally {
+    cancelingIds.value.delete(reqId);
+  }
+}
+</script>
+
+<template>
+  <div class="driver">
+    <table class="driver__table table">
+      <thead class="table__head">
+        <tr>
+          <th class="table__cell" v-for="field in driverApplicationsHeaders">
+            <p class="table__text table__header">
+              {{ field.title }}
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="table__row" v-for="row in tableRows" :key="row.ttn_number">
+        <td class="table__cell" v-for="field in driverApplicationsHeaders" :data-label="field.title">
+
+          <button
+              v-if="field.key === 'interact' && row.status === 'План'"
+              class="table__button visits-button"
+              :disabled="cancelingIds.has(row.req_id)"
+              @click="onCancel(row.req_id)"
+          >
+            <span>Отменить</span>
+          </button>
+          <p v-else class="table__text">{{ row[field.key] }}</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="driver__mobile-table mobile-table">
+      <div
+          class="mobile-table__row"
+          v-for="row in tableRows"
+          :key="row.ttn_number"
+      >
+        <div
+            class="mobile-table__cell"
+            v-for="field in driverApplicationsHeaders"
+            :key="field.key"
+        >
+          <template v-if="field.key === 'interact'">
+            <button
+                v-if="field.key === 'interact' && row.status === 'План'"
+                class="table__button visits-button"
+                :disabled="cancelingIds.has(row.req_id)"
+                @click="onCancel(row.req_id)"
+            >
+              <span>Отменить</span>
+            </button>
+          </template>
+          <template v-else>
+            <p class="mobile-table__header">
+              {{ field.title + ':'}}
+            </p>
+
+            <p class="mobile-table__text">
+              {{ row[field.key] }}
+            </p>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

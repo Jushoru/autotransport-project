@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="unload" viewBox="0 0 16 16">
+        <path fill="white" fill-rule="evenodd"
+              d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+    </symbol>
+
+    <symbol id="plus" viewBox="0 0 32 32" fill="none">
+        <path d="M12.95 31.71V18.76H0V12.88H12.95V0H18.83V12.88H31.745V18.76H18.83V31.71H12.95Z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="down-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6"/>
+    </symbol>
+
+    <symbol id="arrow" viewBox="0 0 35 15" fill="none">
+        <path d="M34.6482 8.07112C35.0388 7.6806 35.0388 7.04743 34.6482 6.65691L28.2843 0.292946C27.8937 -0.0975785 27.2606 -0.0975785 26.8701 0.292946C26.4795 0.68347 26.4795 1.31664 26.8701 1.70716L32.5269 7.36401L26.8701 13.0209C26.4795 13.4114 26.4795 14.0446 26.8701 14.4351C27.2606 14.8256 27.8937 14.8256 28.2843 14.4351L34.6482 8.07112ZM0 7.36401L0 8.36401L33.9411 8.36401V7.36401V6.36401L0 6.36401L0 7.36401Z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="map-marker" viewBox="0 0 24 36" role="img">
+        <path d="M12 2C7 2 3 6 3 11c0 6.08 9 19 9 19s9-12.92 9-19c0-5-4-9-9-9z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="11" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+
+
+</svg>
+

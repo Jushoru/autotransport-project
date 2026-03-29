@@ -1,0 +1,64 @@
+<script setup lang="ts">
+import AnalyticsChart from "~/components/consignee/analytics/chart.vue";
+import AnalyticsTable from "~/components/consignee/analytics/table.vue";
+
+const currentAnalytics = ref('chart')
+</script>
+
+<template>
+  <div class="analytics">
+    <h3 class="analytics__title">Сбор статистических данных и показателей</h3>
+    <nav class="analytics__nav nav">
+      <button class="nav__button visits-button"
+              :class="currentAnalytics === 'chart' ? 'nav__button--active' : ''"
+              @click="currentAnalytics = 'chart'"
+      >
+        Количество принятых машин
+      </button>
+      <button class="nav__button visits-button"
+              :class="currentAnalytics === 'table' ? 'nav__button--active' : ''"
+              @click="currentAnalytics = 'table'"
+      >
+        Отклонение от графика приёма ТС
+      </button>
+    </nav>
+  </div>
+
+  <div class="analytics__body">
+    <AnalyticsChart v-if="currentAnalytics === 'chart'"/>
+    <AnalyticsTable v-else/>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.analytics {
+  &__line {
+    margin-bottom: 1rem;
+  }
+
+  &__body {
+    flex: 1;
+    min-height: 350px;
+  }
+}
+
+.nav {
+    margin: 1rem 0 0 0;
+
+    &__button {
+      text-transform: none;
+      background-color: rgba(0,0,0,0);
+      padding: 0.5rem;
+      color: var(--demo-link-color);
+      transition: color 200ms ease, transform 200ms ease, background-color 200ms ease;
+      &:hover {
+        color: var(--demo-link-color-hover);
+      }
+
+      &--active {
+        background-color: white;
+        border-radius: 3px;
+      }
+    }
+}
+</style>

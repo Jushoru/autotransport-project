@@ -1,0 +1,297 @@
+@import "normalize.css";
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-VariableFont_wght.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-VariableFont_wght.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-VariableFont_wght.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Manrope';
+  src: url('/fonts/Manrope-VariableFont_wght.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+
+  --parent-text-light: white;
+  --parent-color-accent: #69C7E1;
+  --parent-color-accent-hover: #51bedc;
+
+  --parent-layout-width: 1220px;
+  --parent-layout-indent: 3.125rem;
+  --parent-layout-gap: 2.5rem;
+  @media (max-width: 1024px) {
+    --parent-layout-indent: 2rem;
+    --parent-layout-gap: 2rem;
+  }
+  @media (max-width: 576px) {
+    --parent-layout-indent: 1rem;
+    --parent-layout-gap: 1.7rem;
+  }
+  @media (max-width: 480px) {
+    --parent-layout-gap: 1.2rem;
+  }
+
+  --parent-text-3xl: 3.125rem; //55px
+  --parent-text-xxl: 2.188rem; //35px
+  --parent-text-xl: 1.875rem; //30px
+  --parent-text-lg: 1.563rem; //25px
+  --parent-text-md: 1.375rem; //22px
+  --parent-text-s: 1.25rem;
+  --parent-text-xs: 1.125rem;
+  --parent-text-xxs: 1rem;
+  --parent-text-3xs: 0.875rem;
+
+  --demo-outline-color: #101010;
+  --demo-outline-shadow: rgba(16, 16, 16, 0.5);
+
+  --demo-accent-color: rgb(0, 121, 194);
+  --demo-accent-color-hover: rgb(0, 121, 194, 0.8);
+  --demo-bg-color: rgb(242, 239, 235);
+  --demo-bg-color-light: #e7f1f9;
+  --demo-bg-color-active: #eaf2f9;
+
+  --demo-accept-color: #00CD65;
+  --demo-reject-color: #E32636;
+
+  --demo-downtime-color: rgba(255, 0, 0, 0.17);
+  --demo-uptime-color: #DAEEDE;
+
+  --demo-icon-bg-color-active: #bed8ee;
+
+  --demo-border-color: rgb(212 223 235);
+  --demo-border-color-hover: rgb(183 213 237);
+  --demo-border-color-active: rgb(15 116 197);
+
+  --demo-card-color: rgb(207 226 255);
+  --demo-card-border-color: rgb(184 218 255);
+
+  --demo-link-color: #0d6efd;
+  --demo-link-color-hover: #0a58ca;
+
+  --demo-text-dark: rgb(51, 51, 51);
+  --demo-text-dark-accent: #084298;
+  --demo-text-light: white;
+
+  --demo-layout-height: 600px;
+  --demo-layout-body-height: 485px;
+}
+
+
+
+body {
+  background-color: white;
+  position: relative;
+}
+
+html {
+  font-family: 'Manrope', 'sans-serif';
+  color: black;
+  text-wrap: pretty;
+  text-align: left;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: var(--parent-text-3xl);
+  line-height: 120%;
+  word-break: break-word;
+  @media (max-width: 1024px) {
+    font-size: var(--parent-text-xxl);
+  }
+  @media (max-width: 576px) {
+    font-size: var(--parent-text-xl);
+  }
+  @media (max-width: 480px) {
+    font-size: var(--parent-text-lg);
+  }
+}
+
+h2 {
+  font-weight: 600;
+  font-size: var(--parent-text-xxl);
+  @media (max-width: 1024px) {
+    font-size: var(--parent-text-lg);
+  }
+  @media (max-width: 576px) {
+    font-size: var(--parent-text-s);
+    word-break: break-word;
+  }
+}
+
+.accent-text {
+  color: var(--parent-color-accent)
+}
+
+p {
+  font-weight: 400;
+  font-size: var(--parent-text-md);
+  @media (max-width: 1024px) {
+    font-size: var(--parent-text-s);
+  }
+  @media (max-width: 576px) {
+    font-size: var(--parent-text-xs);
+  }
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  padding: 0 var(--parent-layout-indent);
+}
+
+.block {
+  max-width: calc(var(--parent-layout-width) + (var(--parent-layout-indent) * 2));
+  padding-right: var(--parent-layout-indent);
+  padding-left: var(--parent-layout-indent);
+  margin: 0 auto;
+}
+
+
+.visits-button {
+  border: none;
+  background: var(--demo-accent-color);
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  padding: 0.5rem 0.75rem;
+
+  &:hover {
+    background: var(--demo-accent-color-hover);
+  }
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0 0.25rem;
+
+  &__header {
+    font-weight: 700;
+  }
+
+  &__row {
+    background-color: white;
+  }
+
+  &__cell {
+    text-align: start;
+    padding: .2rem .5rem;
+    border: 1px solid #dee2e6;
+  }
+
+  &__text {
+    min-height: 50px;
+    font-size: 16px;
+    @media (max-width: 1024px) {
+      font-size: 14px;
+    }
+    @media (max-width: 576px) {
+      font-size: var(--parent-text-xs);
+    }
+  }
+}
+
+.mobile-table {
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: .75rem;
+    border: 1px solid #dee2e6;
+    background-color: white;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__cell {
+    text-align: start;
+    padding: .2rem .5rem;
+    border: 1px solid #dee2e6;
+
+    &:empty {
+      display: none;
+    }
+    &:nth-child(4n+1) {
+      grid-column-start: span 3;
+    }
+    &:has(button) {
+      grid-column-start: span 3;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 0;
+    }
+    @media (max-width: 768px) {
+      &:nth-child(4n+1) {
+        grid-column-start: auto;
+      }
+      &:nth-child(3n+1) {
+        grid-column-start: span 2;
+      }
+      &:has(button) {
+        grid-column-start: span 2;
+      }
+    }
+  }
+
+  &__header {
+    font-weight: 700;
+  }
+
+  &__value {
+    min-height: 32px;
+  }
+
+  &__header {
+    font-size: 16px;
+    @media (max-width: 576px) {
+      font-size: 14px;
+    }
+  }
+
+  &__text {
+    font-size: 16px;
+    @media (max-width: 576px) {
+      font-size: 14px;
+    }
+  }
+}
+
+.info-card {
+  background-color: var(--demo-card-color);
+  border: 1px solid var(--demo-card-border-color);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  color: var(--demo-text-dark-accent);
+  width: 100%;
+  font-size: 16px;
+}
+
+.table, .mobile-table { display: none; }
+@media (min-width: 1150px) {
+  .table { display: block;}
+}
+@media (max-width: 1150px) {
+  .mobile-table { display: block;}
+}
